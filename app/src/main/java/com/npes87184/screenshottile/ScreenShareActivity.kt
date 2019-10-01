@@ -21,7 +21,7 @@ import android.view.WindowManager
 import androidx.core.content.FileProvider
 
 
-class ScreenshotActivity : Activity() {
+class ScreenShareActivity : Activity() {
     private val requestMediaProject = 5566
     private var mediaProjectionManager: MediaProjectionManager? = null
     private var handler: Handler? = null
@@ -51,12 +51,12 @@ class ScreenshotActivity : Activity() {
         }
         if (RESULT_OK == resultCode) {
             mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, data)
-            screenShot()
+            screenShare()
         }
         finish()
     }
 
-    private fun screenShot() {
+    private fun screenShare() {
         val window = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val metrics = DisplayMetrics()
 

@@ -10,14 +10,14 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ScreenshotActivity"
+            android:name=".ScreenShareActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:excludeFromRecents="true"/>
 
         <service
-            android:name=".ScreenshotTileService"
+            android:name=".ScreenShareTileService"
             android:icon="@drawable/baseline_mobile_screen_share_white_18dp"
-            android:label="Screenshot"
+            android:label="ScreenShare"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
