@@ -92,10 +92,12 @@ class ScreenShareActivity : Activity() {
     private fun startCropScreenshot() {
         val authority = "${BuildConfig.APPLICATION_ID}.fileprovider"
         val imageUri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath!!)
-        
+
         CropImage.activity(imageUri)
             .setInitialCropWindowPaddingRatio(0.toFloat())
             .setActivityTitle(getString(R.string.app_name))
+            .setCropMenuCropButtonIcon(R.drawable.baseline_share_white_48)
+            .setCropMenuCropButtonTitle(getString(R.string.share))
             .start(this)
     }
 
