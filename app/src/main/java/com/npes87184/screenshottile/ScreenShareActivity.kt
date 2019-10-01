@@ -15,10 +15,13 @@ import android.util.DisplayMetrics
 import java.io.FileOutputStream
 import android.graphics.Bitmap
 import android.hardware.display.VirtualDisplay
+import android.util.Log
 import java.io.File
 import java.io.IOException
 import android.view.WindowManager
 import androidx.core.content.FileProvider
+import com.theartofdev.edmodo.cropper.CropImage
+import androidx.core.net.toFile
 
 
 class ScreenShareActivity : Activity() {
@@ -44,16 +47,22 @@ class ScreenShareActivity : Activity() {
         startActivityForResult(mediaProjectionManager?.createScreenCaptureIntent(), requestMediaProject)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (requestMediaProject != requestCode) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestMediaProject == requestCode) {
+            if (RESULT_OK == resultCode) {
+                mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, data!!)
+                screenShare()
+            }
+        } else if (CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE == requestCode) {
+            val result = CropImage.getActivityResult(data)
+            if (resultCode == RESULT_OK) {
+                val resultUri = result.uri
+                val cropped = resultUri.toFile()
+                cropped.copyTo(screenshotPath!!, true)
+                sendScreenshot()
+            }
             finish()
-            return
         }
-        if (RESULT_OK == resultCode) {
-            mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, data)
-            screenShare()
-        }
-        finish()
     }
 
     private fun screenShare() {
@@ -78,6 +87,16 @@ class ScreenShareActivity : Activity() {
         )
         imageReader?.setOnImageAvailableListener(onImageAvailableListener, handler)
         mediaProjection?.registerCallback(MediaProjectionStopCallback(), handler)
+    }
+
+    private fun startCropScreenshot() {
+        val authority = "${BuildConfig.APPLICATION_ID}.fileprovider"
+        val imageUri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath!!)
+        
+        CropImage.activity(imageUri)
+            .setInitialCropWindowPaddingRatio(0.toFloat())
+            .setActivityTitle(getString(R.string.app_name))
+            .start(this)
     }
 
     private fun sendScreenshot() {
@@ -117,7 +136,7 @@ class ScreenShareActivity : Activity() {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
                 mediaProjection?.stop()
                 captured = true
-                sendScreenshot()
+                startCropScreenshot()
             }
         } catch (e: Exception) {
             e.printStackTrace()
