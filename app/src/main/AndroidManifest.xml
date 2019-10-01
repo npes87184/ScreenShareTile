@@ -18,7 +18,7 @@
 
         <service
             android:name=".ScreenShareTileService"
-            android:icon="@drawable/baseline_mobile_screen_share_white_18dp"
+            android:icon="@drawable/baseline_mobile_screen_share_white_48"
             android:label="ScreenShare"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
