@@ -11,7 +11,8 @@
 
         <activity
             android:name=".ScreenshotActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true"/>
 
         <service
             android:name=".ScreenshotTileService"
