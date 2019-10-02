@@ -44,7 +44,7 @@ class ScreenShareActivity : Activity() {
         imagesDir.mkdirs()
         screenshotPath = File(imagesDir, "ScreenshotTile.png")
         mediaProjectionManager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        Thread.sleep(200)
+        Thread.sleep(300)
         startActivityForResult(mediaProjectionManager?.createScreenCaptureIntent(), requestMediaProject)
     }
 
