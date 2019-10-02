@@ -15,7 +15,6 @@ import android.util.DisplayMetrics
 import java.io.FileOutputStream
 import android.graphics.Bitmap
 import android.hardware.display.VirtualDisplay
-import android.util.Log
 import java.io.File
 import java.io.IOException
 import android.view.WindowManager
