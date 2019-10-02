@@ -2,4 +2,6 @@
     <string name="app_name">ScreenShareTile</string>
 
     <string name="share">Share</string>
+
+    <string name="screen_captured_permission_missing">Permission required in order to capture screenshots.</string>
 </resources>

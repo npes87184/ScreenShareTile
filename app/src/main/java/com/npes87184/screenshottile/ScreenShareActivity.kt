@@ -19,6 +19,7 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.theartofdev.edmodo.cropper.CropImage
 import androidx.core.net.toFile
@@ -52,6 +53,11 @@ class ScreenShareActivity : Activity() {
             if (RESULT_OK == resultCode) {
                 mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, data!!)
                 screenShare()
+            } else {
+                Toast.makeText(applicationContext,
+                    applicationContext.getString(R.string.screen_captured_permission_missing),
+                    Toast.LENGTH_LONG).show()
+                finish()
             }
         } else if (CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE == requestCode) {
             val result = CropImage.getActivityResult(data)
