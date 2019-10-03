@@ -63,7 +63,7 @@ class ScreenShareActivity : Activity() {
             if (resultCode == RESULT_OK) {
                 val resultUri = result.uri
                 val cropped = resultUri.toFile()
-                cropped.copyTo(screenshotPath!!, true)
+                cropped.renameTo(screenshotPath!!)
                 sendScreenshot()
             }
             finish()
