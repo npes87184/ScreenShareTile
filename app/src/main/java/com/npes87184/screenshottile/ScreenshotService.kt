@@ -67,6 +67,7 @@ class ScreenshotService : Service() {
         receiver = intent.getParcelableExtra("receiver")!!
 
         mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, resultData!!)
+        Thread.sleep(150)
         screenshot()
 
         return super.onStartCommand(intent, flags, startId)
