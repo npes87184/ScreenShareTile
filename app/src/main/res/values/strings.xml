@@ -2,6 +2,7 @@
     <string name="app_name">Screen Share Tile</string>
 
     <string name="share">Share</string>
+    <string name="running">running</string>
 
     <string name="screen_captured_permission_missing">Permission required in order to capture screenshots.</string>
 </resources>
