@@ -4,5 +4,20 @@
     <string name="share">Share</string>
     <string name="running">running</string>
 
+    <string name="intro_title_0">Application intro</string>
+    <string name="intro_description_0">Screen Share Tile works through its quick settings tile, before using it, tile needs to be added on notification panel manually. This intro shows basic method to add tile.</string>
+
+    <string name="intro_title_1">Enter editing tile mode</string>
+    <string name="intro_description_1">Pull down completely the notification shade and tap the edit button.</string>
+
+    <string name="intro_title_2">Find Screen Share Tile</string>
+    <string name="intro_description_2">Scroll down and find the screen share tile.</string>
+
+    <string name="intro_title_3">Add Screen Share Tile</string>
+    <string name="intro_description_3">Drag the tile up to the desired position.</string>
+
+    <string name="intro_title_4">Enjoy!</string>
+    <string name="intro_description_4">After adding tile, we can simply share screenshot by clicking the tile!</string>
+
     <string name="screen_captured_permission_missing">Permission required in order to capture screenshots.</string>
 </resources>
