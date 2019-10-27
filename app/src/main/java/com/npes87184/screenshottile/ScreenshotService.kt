@@ -141,6 +141,7 @@ class ScreenshotService : Service() {
     private val onImageAvailableListener = ImageReader.OnImageAvailableListener { reader ->
         var image: Image? = null
         var fos: FileOutputStream? = null
+        var bitmapWithStride: Bitmap? = null
         var bitmap: Bitmap? = null
 
         try {
@@ -150,13 +151,13 @@ class ScreenshotService : Service() {
                 val buffer = planes[0].buffer
                 val pixelStride = planes[0].pixelStride
                 val rowStride = planes[0].rowStride
-                val rowPadding = rowStride - pixelStride * width
 
-                bitmap = Bitmap.createBitmap(
-                    width + rowPadding / pixelStride,
+                bitmapWithStride = Bitmap.createBitmap(
+                    rowStride / pixelStride,
                     height, Bitmap.Config.ARGB_8888
                 )
-                bitmap.copyPixelsFromBuffer(buffer)
+                bitmapWithStride.copyPixelsFromBuffer(buffer)
+                bitmap = Bitmap.createBitmap(bitmapWithStride, 0,0, width, height);
 
                 fos = FileOutputStream(screenshotPath)
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
@@ -177,6 +178,7 @@ class ScreenshotService : Service() {
 
             }
             bitmap?.recycle()
+            bitmapWithStride?.recycle()
             image?.close()
             stopSelf()
         }
