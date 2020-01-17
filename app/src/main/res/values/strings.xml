@@ -20,4 +20,6 @@
     <string name="intro_description_4">After adding tile, we can simply share screenshot by clicking the tile!</string>
 
     <string name="screen_captured_permission_missing">Permission required in order to capture screenshots.</string>
+
+    <string name="action_introduction">Introduction</string>
 </resources>
