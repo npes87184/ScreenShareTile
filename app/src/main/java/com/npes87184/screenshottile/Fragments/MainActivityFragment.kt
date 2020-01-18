@@ -19,6 +19,7 @@ class MainActivityFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_main, container, false)
         val cardIntro = v.findViewById(R.id.intro_card) as CardView
         val cardSetting = v.findViewById(R.id.setting_card) as CardView
+        val cardAbout = v.findViewById(R.id.about_card) as CardView
 
         cardIntro.setOnClickListener {
             onIntroClick()
@@ -26,6 +27,10 @@ class MainActivityFragment : Fragment() {
 
         cardSetting.setOnClickListener {
             onSettingClick()
+        }
+
+        cardAbout.setOnClickListener {
+            onAboutClick()
         }
 
         return v
@@ -41,6 +46,16 @@ class MainActivityFragment : Fragment() {
         val transaction = fragmentManager!!.beginTransaction()
 
         transaction.replace(R.id.container, settingFragment)
+        transaction.addToBackStack(null)
+
+        transaction.commit()
+    }
+
+    private fun onAboutClick() {
+        val aboutFragment = AboutFragment()
+        val transaction = fragmentManager!!.beginTransaction()
+
+        transaction.replace(R.id.container, aboutFragment)
         transaction.addToBackStack(null)
 
         transaction.commit()
