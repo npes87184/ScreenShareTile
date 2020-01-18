@@ -23,8 +23,12 @@ import android.os.*
 import androidx.core.app.NotificationCompat
 import android.app.NotificationManager
 import android.app.NotificationChannel
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
+import android.util.Log
+import androidx.preference.PreferenceManager
+import com.npes87184.screenshottile.Utils.Define
 
 
 class ScreenshotService : Service() {
@@ -67,7 +71,9 @@ class ScreenshotService : Service() {
         receiver = intent.getParcelableExtra("receiver")!!
 
         mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, resultData!!)
-        Thread.sleep(150)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val sleepTime = prefs.getString(Define.DELAY_TIME, Define.DELAY_TIME_DEFAULT)
+        Thread.sleep(sleepTime!!.toLong())
         screenshot()
 
         return super.onStartCommand(intent, flags, startId)

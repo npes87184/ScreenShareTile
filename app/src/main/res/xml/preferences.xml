@@ -1,0 +1,12 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        android:key="delayTime"
+        android:title="@string/setting_delay"
+        android:defaultValue="250"
+        app:useSimpleSummaryProvider="true"
+        android:dialogTitle="@string/setting_delay_description"/>
+
+</PreferenceScreen>

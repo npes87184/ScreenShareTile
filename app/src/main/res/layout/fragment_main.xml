@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,11 +15,12 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:layout_above="@+id/setting_card"
         android:foreground="?android:attr/selectableItemBackground"
         card_view:cardCornerRadius="4dp">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView1"
             android:layout_width="133dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -37,4 +38,35 @@
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/setting_card"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardCornerRadius="4dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/baseline_build_black_48" />
+
+        <TextView
+            android:text="@string/action_setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_gravity="center" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -22,4 +22,8 @@
     <string name="screen_captured_permission_missing">Permission required in order to capture screenshots.</string>
 
     <string name="action_introduction">Introduction</string>
+    <string name="action_setting">Setting</string>
+
+    <string name="setting_delay">Delay time (ms)</string>
+    <string name="setting_delay_description">Delay time after clicking tile</string>
 </resources>
