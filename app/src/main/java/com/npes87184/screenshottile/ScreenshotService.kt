@@ -1,10 +1,11 @@
 package com.npes87184.screenshottile
 
-import android.app.Activity
-import android.app.Service
+import android.app.*
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.PixelFormat
 import android.hardware.display.DisplayManager
 import android.hardware.display.VirtualDisplay
@@ -12,23 +13,15 @@ import android.media.Image
 import android.media.ImageReader
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
+import android.os.*
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
+import com.npes87184.screenshottile.Utils.Define
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import android.app.Activity.RESULT_OK
-import android.app.Notification
-import android.os.*
-import androidx.core.app.NotificationCompat
-import android.app.NotificationManager
-import android.app.NotificationChannel
-import android.content.SharedPreferences
-import android.graphics.Color
-import android.os.Build
-import android.util.Log
-import androidx.preference.PreferenceManager
-import com.npes87184.screenshottile.Utils.Define
 
 
 class ScreenshotService : Service() {

@@ -1,11 +1,11 @@
 package com.npes87184.screenshottile
 
 import android.graphics.Color
-import com.github.paolorotolo.appintro.model.SliderPage
 import android.os.Bundle
 import androidx.annotation.Nullable
 import com.github.paolorotolo.appintro.AppIntro2
 import com.github.paolorotolo.appintro.AppIntro2Fragment
+import com.github.paolorotolo.appintro.model.SliderPage
 
 
 class IntroActivity : AppIntro2() {

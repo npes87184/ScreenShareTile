@@ -3,15 +3,15 @@ package com.npes87184.screenshottile
 import android.app.Activity
 import android.content.Intent
 import android.media.projection.MediaProjectionManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import java.io.File
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.theartofdev.edmodo.cropper.CropImage
 import androidx.core.net.toFile
-import android.os.Build
 import com.npes87184.screenshottile.Utils.ScreenshotResultReceiver
+import com.theartofdev.edmodo.cropper.CropImage
+import java.io.File
 
 
 class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {

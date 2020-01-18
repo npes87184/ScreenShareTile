@@ -1,12 +1,12 @@
 package com.npes87184.screenshottile.Fragments
 
-import androidx.fragment.app.Fragment
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
-import android.content.Intent
+import androidx.fragment.app.Fragment
 import com.npes87184.screenshottile.IntroActivity
 import com.npes87184.screenshottile.R
 
