@@ -33,16 +33,7 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestMediaProject == requestCode) {
             if (RESULT_OK == resultCode) {
-                val service = Intent(this, ScreenshotService::class.java)
-
-                service.putExtra("code", resultCode)
-                service.putExtra("data", data)
-                service.putExtra("receiver", receiver)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(service)
-                } else {
-                    startService(service)
-                }
+                startScreenshot(resultCode, data)
             } else {
                 Toast.makeText(applicationContext,
                     applicationContext.getString(R.string.screen_captured_permission_missing),
@@ -64,6 +55,19 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
     override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
         if (resultCode == RESULT_OK) {
             startCropScreenshot()
+        }
+    }
+
+    private fun startScreenshot(resultCode: Int, data: Intent?) {
+        val service = Intent(this, ScreenshotService::class.java)
+
+        service.putExtra("code", resultCode)
+        service.putExtra("data", data)
+        service.putExtra("receiver", receiver)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(service)
+        } else {
+            startService(service)
         }
     }
 
