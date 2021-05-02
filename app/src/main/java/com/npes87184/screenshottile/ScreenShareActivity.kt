@@ -18,16 +18,16 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
     private val requestMediaProject = 5566
     private lateinit var screenshotPath: File
     private val receiver: ScreenshotResultReceiver = ScreenshotResultReceiver(Handler())
-    private var mediaProjectionManager: MediaProjectionManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val imagesDir = File(applicationContext.filesDir, "images")
+        val mediaProjectionManager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+
         imagesDir.mkdirs()
         screenshotPath = File(imagesDir, "ScreenshotTile.png")
         receiver.setReceiver(this)
-        mediaProjectionManager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        startActivityForResult(mediaProjectionManager?.createScreenCaptureIntent(), requestMediaProject)
+        startActivityForResult(mediaProjectionManager.createScreenCaptureIntent(), requestMediaProject)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
