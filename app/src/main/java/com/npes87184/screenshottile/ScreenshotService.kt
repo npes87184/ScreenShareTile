@@ -55,7 +55,7 @@ class ScreenshotService : Service() {
 
         val resultCode = intent.getIntExtra("code", -1)
         val resultData = intent.getParcelableExtra<Intent>("data")
-        receiver = intent.getParcelableExtra("receiver")!!
+        receiver = intent.getParcelableExtra("receiver")
 
         mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, resultData!!)
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
@@ -158,7 +158,7 @@ class ScreenshotService : Service() {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
                 mediaProjection?.stop()
                 captured = true
-                receiver!!.send(RESULT_OK, Bundle())
+                receiver?.send(RESULT_OK, Bundle())
                 mediaProjection?.stop()
             }
         } catch (e: Exception) {
