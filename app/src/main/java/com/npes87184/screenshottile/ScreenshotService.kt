@@ -181,12 +181,8 @@ class ScreenshotService : Service() {
 
     private inner class MediaProjectionStopCallback : MediaProjection.Callback() {
         override fun onStop() {
-            if (virtualDisplay != null) {
-                virtualDisplay?.release()
-            }
-            if (imageReader != null) {
-                imageReader?.setOnImageAvailableListener(null, null)
-            }
+            virtualDisplay?.release()
+            imageReader?.setOnImageAvailableListener(null, null)
             mediaProjection?.unregisterCallback(this@MediaProjectionStopCallback)
         }
     }
