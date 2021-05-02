@@ -28,7 +28,7 @@ class ScreenshotService : Service() {
     private val handler = Handler()
     private var width = 0
     private var height = 0
-    private var screenshotPath: File? = null
+    private lateinit var screenshotPath: File
     private var virtualDisplay: VirtualDisplay? = null
     private var imageReader: ImageReader? = null
     private var mediaProjection: MediaProjection? = null
