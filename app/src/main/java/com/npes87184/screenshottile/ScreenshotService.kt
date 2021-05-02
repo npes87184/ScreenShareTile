@@ -46,7 +46,8 @@ class ScreenshotService : Service() {
 
         imagesDir.mkdirs()
         screenshotPath = File(imagesDir, "ScreenshotTile.png")
-        mediaProjectionManager = getSystemService(Activity.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        mediaProjectionManager =
+            getSystemService(Activity.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -114,8 +115,10 @@ class ScreenshotService : Service() {
         width = metrics.widthPixels
         height = metrics.heightPixels
 
-        imageReader = ImageReader.newInstance(metrics.widthPixels, metrics.heightPixels,
-            PixelFormat.RGBA_8888, 2)
+        imageReader = ImageReader.newInstance(
+            metrics.widthPixels, metrics.heightPixels,
+            PixelFormat.RGBA_8888, 2
+        )
         virtualDisplay = mediaProjection?.createVirtualDisplay(
             "Screenshot",
             metrics.widthPixels,
@@ -149,7 +152,7 @@ class ScreenshotService : Service() {
                     height, Bitmap.Config.ARGB_8888
                 )
                 bitmapWithStride.copyPixelsFromBuffer(buffer)
-                bitmap = Bitmap.createBitmap(bitmapWithStride, 0,0, width, height);
+                bitmap = Bitmap.createBitmap(bitmapWithStride, 0, 0, width, height);
 
                 fos = FileOutputStream(screenshotPath)
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
