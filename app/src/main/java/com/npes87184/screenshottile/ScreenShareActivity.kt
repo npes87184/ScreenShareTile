@@ -17,7 +17,7 @@ import java.io.File
 class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
     private val requestMediaProject = 5566
     private var screenshotPath: File? = null
-    private var receiver: ScreenshotResultReceiver? = null
+    private val receiver: ScreenshotResultReceiver = ScreenshotResultReceiver(Handler())
     private var mediaProjectionManager: MediaProjectionManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +26,7 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
 
         imagesDir.mkdirs()
         screenshotPath = File(imagesDir, "ScreenshotTile.png")
-        receiver = ScreenshotResultReceiver(Handler())
-        receiver!!.setReceiver(this)
+        receiver.setReceiver(this)
         mediaProjectionManager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         startActivityForResult(mediaProjectionManager?.createScreenCaptureIntent(), requestMediaProject)
     }
@@ -39,7 +38,7 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
 
                 service.putExtra("code", resultCode)
                 service.putExtra("data", data)
-                service.putExtra("receiver", receiver!!)
+                service.putExtra("receiver", receiver)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(service)
                 } else {
