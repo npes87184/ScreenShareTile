@@ -25,7 +25,7 @@ import java.io.IOException
 
 
 class ScreenshotService : Service() {
-    private var handler: Handler? = null
+    private val handler = Handler()
     private var width = 0
     private var height = 0
     private var screenshotPath: File? = null
@@ -178,15 +178,13 @@ class ScreenshotService : Service() {
 
     private inner class MediaProjectionStopCallback : MediaProjection.Callback() {
         override fun onStop() {
-            handler?.post {
-                if (virtualDisplay != null) {
-                    virtualDisplay?.release()
-                }
-                if (imageReader != null) {
-                    imageReader?.setOnImageAvailableListener(null, null)
-                }
-                mediaProjection?.unregisterCallback(this@MediaProjectionStopCallback)
+            if (virtualDisplay != null) {
+                virtualDisplay?.release()
             }
+            if (imageReader != null) {
+                imageReader?.setOnImageAvailableListener(null, null)
+            }
+            mediaProjection?.unregisterCallback(this@MediaProjectionStopCallback)
         }
     }
 }
