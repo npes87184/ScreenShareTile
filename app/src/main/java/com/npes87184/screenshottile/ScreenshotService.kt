@@ -60,7 +60,8 @@ class ScreenshotService : Service() {
         mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, resultData!!)
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val sleepTime = prefs.getString(Define.DELAY_TIME, Define.DELAY_TIME_DEFAULT)
-        Thread.sleep(sleepTime!!.toLong())
+            ?: Define.DELAY_TIME_DEFAULT
+        Thread.sleep(sleepTime.toLong())
         screenshot()
 
         return super.onStartCommand(intent, flags, startId)
