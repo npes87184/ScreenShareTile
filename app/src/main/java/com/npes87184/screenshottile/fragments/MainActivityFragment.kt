@@ -1,4 +1,4 @@
-package com.npes87184.screenshottile.Fragments
+package com.npes87184.screenshottile.fragments
 
 import android.content.Intent
 import android.os.Bundle

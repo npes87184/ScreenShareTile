@@ -1,4 +1,4 @@
-package com.npes87184.screenshottile.Utils
+package com.npes87184.screenshottile.utils
 
 import android.os.Bundle
 import android.os.Handler

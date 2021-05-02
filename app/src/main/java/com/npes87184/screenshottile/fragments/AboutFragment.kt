@@ -1,4 +1,4 @@
-package com.npes87184.screenshottile.Fragments
+package com.npes87184.screenshottile.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.npes87184.screenshottile.R
-import com.npes87184.screenshottile.Utils.Define
+import com.npes87184.screenshottile.utils.Define
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 

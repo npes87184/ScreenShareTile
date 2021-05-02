@@ -18,7 +18,7 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
-import com.npes87184.screenshottile.Utils.Define
+import com.npes87184.screenshottile.utils.Define
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

@@ -2,7 +2,7 @@ package com.npes87184.screenshottile
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.npes87184.screenshottile.Fragments.MainActivityFragment
+import com.npes87184.screenshottile.fragments.MainActivityFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 

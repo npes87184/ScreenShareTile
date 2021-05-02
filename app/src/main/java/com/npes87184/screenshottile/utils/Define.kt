@@ -1,4 +1,4 @@
-package com.npes87184.screenshottile.Utils
+package com.npes87184.screenshottile.utils
 
 class Define {
     companion object {

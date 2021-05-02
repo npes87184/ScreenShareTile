@@ -9,7 +9,7 @@ import android.os.Handler
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.net.toFile
-import com.npes87184.screenshottile.Utils.ScreenshotResultReceiver
+import com.npes87184.screenshottile.utils.ScreenshotResultReceiver
 import com.theartofdev.edmodo.cropper.CropImage
 import java.io.File
 
