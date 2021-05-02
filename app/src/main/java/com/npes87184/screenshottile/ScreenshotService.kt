@@ -34,7 +34,7 @@ class ScreenshotService : Service() {
     private var mediaProjection: MediaProjection? = null
     private var captured = false
     private var receiver: ResultReceiver? = null
-    private var mediaProjectionManager: MediaProjectionManager? = null
+    private lateinit var mediaProjectionManager: MediaProjectionManager
 
     override fun onBind(intent: Intent): IBinder? {
         return Binder()
@@ -57,7 +57,7 @@ class ScreenshotService : Service() {
         val resultData = intent.getParcelableExtra<Intent>("data")
         receiver = intent.getParcelableExtra("receiver")
 
-        mediaProjection = mediaProjectionManager?.getMediaProjection(resultCode, resultData!!)
+        mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, resultData!!)
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val sleepTime = prefs.getString(Define.DELAY_TIME, Define.DELAY_TIME_DEFAULT)
         Thread.sleep(sleepTime!!.toLong())
