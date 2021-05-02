@@ -16,14 +16,13 @@ import java.io.File
 
 class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
     private val requestMediaProject = 5566
-    private var screenshotPath: File? = null
+    private lateinit var screenshotPath: File
     private val receiver: ScreenshotResultReceiver = ScreenshotResultReceiver(Handler())
     private var mediaProjectionManager: MediaProjectionManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val imagesDir = File(applicationContext.filesDir, "images")
-
         imagesDir.mkdirs()
         screenshotPath = File(imagesDir, "ScreenshotTile.png")
         receiver.setReceiver(this)
@@ -55,7 +54,7 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
             if (resultCode == RESULT_OK) {
                 val resultUri = result.uri
                 val cropped = resultUri.toFile()
-                cropped.renameTo(screenshotPath!!)
+                cropped.renameTo(screenshotPath)
                 sendScreenshot()
             }
             finish()
@@ -70,7 +69,7 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
 
     private fun startCropScreenshot() {
         val authority = "${BuildConfig.APPLICATION_ID}.fileprovider"
-        val imageUri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath!!)
+        val imageUri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath)
 
         CropImage.activity(imageUri)
             .setInitialCropWindowPaddingRatio(0.toFloat())
@@ -82,7 +81,7 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
 
     private fun sendScreenshot() {
         val authority = "${BuildConfig.APPLICATION_ID}.fileprovider"
-        val uri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath!!)
+        val uri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath)
         val shareIntent = Intent()
 
         shareIntent.action = Intent.ACTION_SEND
