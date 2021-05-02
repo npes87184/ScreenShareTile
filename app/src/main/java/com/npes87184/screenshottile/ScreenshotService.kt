@@ -25,7 +25,6 @@ import java.io.IOException
 
 
 class ScreenshotService : Service() {
-    private val myBinder = MyLocalBinder()
     private var handler: Handler? = null
     private var width = 0
     private var height = 0
@@ -38,13 +37,7 @@ class ScreenshotService : Service() {
     private var mediaProjectionManager: MediaProjectionManager? = null
 
     override fun onBind(intent: Intent): IBinder? {
-        return myBinder
-    }
-
-    inner class MyLocalBinder : Binder() {
-        fun getService() : ScreenshotService {
-            return this@ScreenshotService
-        }
+        return Binder()
     }
 
     override fun onCreate() {
