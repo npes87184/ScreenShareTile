@@ -20,13 +20,7 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val versionElement = Element()
-        var versionNum: String? = ""
-        versionNum = try {
-            activity!!.packageManager.getPackageInfo(activity!!.packageName, 0)
-                .versionName
-        } catch (e: Exception) {
-            getString(R.string.about_version)
-        }
+        val versionNum = getVersionNum() ?: getString(R.string.about_version)
         versionElement.title = getString(R.string.about_version_tag) + versionNum
 
         val authorElement = Element()
@@ -64,4 +58,10 @@ class AboutFragment : Fragment() {
         return aboutPage.create()
     }
 
+    private fun getVersionNum() : String? {
+        val activity = activity ?: return null
+        return activity.packageManager?.getPackageInfo(activity.packageName, 0)
+                ?.versionName
+
+    }
 }

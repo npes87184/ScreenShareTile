@@ -12,7 +12,7 @@ class SettingFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
         val editTextPreference = preferenceManager.findPreference<EditTextPreference>("delayTime")
-        editTextPreference!!.setOnBindEditTextListener { editText ->
+        editTextPreference?.setOnBindEditTextListener { editText ->
             editText.inputType = InputType.TYPE_CLASS_NUMBER
         }
     }

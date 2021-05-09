@@ -43,7 +43,7 @@ class MainActivityFragment : Fragment() {
 
     private fun onSettingClick() {
         val settingFragment = SettingFragment()
-        val transaction = fragmentManager!!.beginTransaction()
+        val transaction = parentFragmentManager.beginTransaction()
 
         transaction.replace(R.id.container, settingFragment)
         transaction.addToBackStack(null)
@@ -53,7 +53,7 @@ class MainActivityFragment : Fragment() {
 
     private fun onAboutClick() {
         val aboutFragment = AboutFragment()
-        val transaction = fragmentManager!!.beginTransaction()
+        val transaction = parentFragmentManager.beginTransaction()
 
         transaction.replace(R.id.container, aboutFragment)
         transaction.addToBackStack(null)

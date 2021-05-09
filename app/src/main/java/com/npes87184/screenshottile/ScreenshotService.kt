@@ -54,10 +54,10 @@ class ScreenshotService : Service() {
         createNotificationChannel()
 
         val resultCode = intent.getIntExtra("code", -1)
-        val resultData = intent.getParcelableExtra<Intent>("data")
+        val resultData = checkNotNull(intent.getParcelableExtra<Intent>("data"))
         receiver = intent.getParcelableExtra("receiver")
 
-        mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, resultData!!)
+        mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, resultData)
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val sleepTime = prefs.getString(Define.DELAY_TIME, Define.DELAY_TIME_DEFAULT)
             ?: Define.DELAY_TIME_DEFAULT
