@@ -9,4 +9,11 @@
         app:useSimpleSummaryProvider="true"
         android:dialogTitle="@string/setting_delay_description"/>
 
+    <EditTextPreference
+        android:key="sharingMsg"
+        android:title="@string/setting_sharing_msg"
+        android:defaultValue="@string/setting_sharing_msg_default"
+        app:useSimpleSummaryProvider="true"
+        android:dialogTitle="@string/setting_sharing_msg_description"/>
+
 </PreferenceScreen>

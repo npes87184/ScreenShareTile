@@ -9,6 +9,8 @@ import android.os.Handler
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.net.toFile
+import androidx.preference.PreferenceManager
+import com.npes87184.screenshottile.utils.Define
 import com.npes87184.screenshottile.utils.ScreenshotResultReceiver
 import com.theartofdev.edmodo.cropper.CropImage
 import java.io.File
@@ -87,12 +89,15 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
         val authority = "${BuildConfig.APPLICATION_ID}.fileprovider"
         val uri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath)
         val shareIntent = Intent()
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val sharingMsgDef = getString(R.string.setting_sharing_msg_default)
+        val sharingMsg = prefs.getString(Define.SHARING_MSG, sharingMsgDef) ?: sharingMsgDef
 
         shareIntent.action = Intent.ACTION_SEND
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         shareIntent.setDataAndType(uri, applicationContext.contentResolver.getType(uri))
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "I'm sharing this screenshot!")
+        shareIntent.putExtra(Intent.EXTRA_TEXT, sharingMsg)
         startActivity(Intent.createChooser(shareIntent, "Share screenshot to:"))
     }
 }

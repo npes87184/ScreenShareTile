@@ -27,6 +27,9 @@
 
     <string name="setting_delay">Delay time (ms)</string>
     <string name="setting_delay_description">Delay time after clicking tile</string>
+    <string name="setting_sharing_msg">Sharing message</string>
+    <string name="setting_sharing_msg_description">Sharing message with screenshot</string>
+    <string name="setting_sharing_msg_default">Shared screenshot from ScreenShareTile</string>
 
     <string name="about_version_tag">Version:\u0020</string>
     <string name="about_version">1.2.0</string>
