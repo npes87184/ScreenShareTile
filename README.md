@@ -10,7 +10,7 @@ Take a screenshot quickly from Android quick setting tile.
 Share screenshot in better and smooth way.
 
 1. Click quick settings tile
-2. Crop screenshot
+2. Crop & edit screenshot
 3. Share it!
 
 Screen Share Tile works through its quick settings tile, before using it, tile needs to be added on notification panel manually.
@@ -22,3 +22,4 @@ Screen Share Tile works through its quick settings tile, before using it, tile n
 ### Credits
 
 * Icon made by Freepik from www.flaticon.com
+* Image editing library using [Ananas](https://github.com/iamutkarshtiwari/Ananas)
