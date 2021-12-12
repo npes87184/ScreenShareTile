@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ScreenShareTile-ScreenShotTile.iml" filepath="$PROJECT_DIR$/.idea/modules/ScreenShareTile-ScreenShotTile.iml" group="ScreenShotTile" />
-      <module fileurl="file://$PROJECT_DIR$/ScreenShotTile.iml" filepath="$PROJECT_DIR$/ScreenShotTile.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ScreenShotTile-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ScreenShotTile-app.iml" group="ScreenShotTile/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ScreenShotTile.iml" filepath="$PROJECT_DIR$/.idea/modules/ScreenShotTile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ScreenShotTile.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ScreenShotTile.app.iml" />
     </modules>
   </component>
 </project>
