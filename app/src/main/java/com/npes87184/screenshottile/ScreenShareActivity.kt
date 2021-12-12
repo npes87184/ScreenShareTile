@@ -1,25 +1,28 @@
 package com.npes87184.screenshottile
 
-import android.app.Activity
 import android.content.Intent
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.core.net.toFile
 import androidx.preference.PreferenceManager
 import com.npes87184.screenshottile.utils.Define
 import com.npes87184.screenshottile.utils.ScreenshotResultReceiver
-import com.theartofdev.edmodo.cropper.CropImage
+import iamutkarshtiwari.github.io.ananas.editimage.EditImageActivity
+import iamutkarshtiwari.github.io.ananas.editimage.ImageEditorIntentBuilder
 import java.io.File
 
 
-class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
+class ScreenShareActivity : AppCompatActivity(), ScreenshotResultReceiver.Receiver {
     private val requestMediaProject = 5566
     private lateinit var screenshotPath: File
     private val receiver: ScreenshotResultReceiver = ScreenshotResultReceiver(Handler())
+    private lateinit var imageEditorLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +30,14 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
         val mediaProjectionManager = getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
         imagesDir.mkdirs()
-        screenshotPath = File(imagesDir, "ScreenshotTile.png")
+        screenshotPath = File(imagesDir, "ScreenshotTile.jpg")
         receiver.setReceiver(this)
+        imageEditorLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                sendScreenshot()
+                finish()
+            }
+        }
         startActivityForResult(mediaProjectionManager.createScreenCaptureIntent(), requestMediaProject)
     }
 
@@ -42,21 +51,13 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
                     Toast.LENGTH_LONG).show()
                 finish()
             }
-        } else if (CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE == requestCode) {
-            val result = CropImage.getActivityResult(data)
-            if (resultCode == RESULT_OK) {
-                val resultUri = result.uri
-                val cropped = resultUri.toFile()
-                cropped.renameTo(screenshotPath)
-                sendScreenshot()
-            }
-            finish()
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
         if (resultCode == RESULT_OK) {
-            startCropScreenshot()
+            startEditScreenshot()
         }
     }
 
@@ -73,16 +74,16 @@ class ScreenShareActivity : Activity(), ScreenshotResultReceiver.Receiver {
         }
     }
 
-    private fun startCropScreenshot() {
-        val authority = "${BuildConfig.APPLICATION_ID}.fileprovider"
-        val imageUri = FileProvider.getUriForFile(applicationContext, authority, screenshotPath)
-
-        CropImage.activity(imageUri)
-            .setInitialCropWindowPaddingRatio(0.toFloat())
-            .setActivityTitle(getString(R.string.app_name))
-            .setCropMenuCropButtonIcon(R.drawable.baseline_share_white_48)
-            .setCropMenuCropButtonTitle(getString(R.string.share))
-            .start(this)
+    private fun startEditScreenshot() {
+        try {
+            val intent = ImageEditorIntentBuilder(this, screenshotPath.absolutePath, screenshotPath.absolutePath)
+                .withPaintFeature()
+                .withRotateFeature()
+                .withCropFeature()
+                .build();
+            EditImageActivity.start(imageEditorLauncher, intent, this)
+        } catch (e: Exception) {
+        }
     }
 
     private fun sendScreenshot() {

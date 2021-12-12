@@ -11,7 +11,6 @@ class ScreenshotResultReceiver(handler: Handler)
 
     interface Receiver {
         fun onReceiveResult(resultCode: Int, resultData: Bundle)
-
     }
 
     fun setReceiver(receiver: Receiver) {

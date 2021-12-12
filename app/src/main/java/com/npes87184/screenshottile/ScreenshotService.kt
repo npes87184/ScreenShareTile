@@ -45,7 +45,7 @@ class ScreenshotService : Service() {
         val imagesDir = File(applicationContext.filesDir, "images")
 
         imagesDir.mkdirs()
-        screenshotPath = File(imagesDir, "ScreenshotTile.png")
+        screenshotPath = File(imagesDir, "ScreenshotTile.jpg")
         mediaProjectionManager =
             getSystemService(Activity.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
     }
@@ -156,7 +156,7 @@ class ScreenshotService : Service() {
                 bitmap = Bitmap.createBitmap(bitmapWithStride, 0, 0, width, height);
 
                 fos = FileOutputStream(screenshotPath)
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
                 mediaProjection?.stop()
                 captured = true
                 receiver?.send(RESULT_OK, Bundle())

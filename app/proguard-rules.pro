@@ -21,3 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class androidx.appcompat.widget.** { *; }
+-keepclasseswithmembers class * {
+    native <methods>;
+}

@@ -50,4 +50,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'com.github.medyo:android-about-page:1.2.4'
+    implementation 'com.github.iamutkarshtiwari:Ananas:1.2.6'
 }
